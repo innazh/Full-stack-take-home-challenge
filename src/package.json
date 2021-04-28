@@ -1,0 +1,14 @@
+{
+  "name": "do_website",
+  "version": "1.0.0",
+  "description": "A DO Website",
+  "author": "a_developerv@digitalocean.com",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^4.16.1",
+    "sqlite3": "^4.0.6"
+  }
+}
