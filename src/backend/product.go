@@ -1,8 +1,8 @@
 package main
 
 type Product struct {
-	id   string
-	name string
+	Id   string `json:"id"`
+	Name string `json:"name"`
 }
 
 func NewProduct(id, name string) Product {

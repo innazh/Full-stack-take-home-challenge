@@ -1,8 +1,8 @@
 package main
 
 type User struct {
-	username string
-	realName string
+	Username string `json:"username"`
+	RealName string `json:"realname"`
 }
 
 func NewUser(username, realName string) User {

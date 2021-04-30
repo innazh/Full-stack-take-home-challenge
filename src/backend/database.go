@@ -12,7 +12,7 @@ type Client struct {
 }
 
 func NewClient(driverName, dataSource string) (*Client, error) {
-	db, err := sql.Open(driverName, dataSource) //"sqlite3", "./foo.db"
+	db, err := sql.Open(driverName, dataSource)
 	return &Client{db}, err
 }
 
@@ -35,6 +35,23 @@ func (c *Client) GetUsers() []User {
 	return users
 }
 
+func (c *Client) GetUser(username string) User {
+	var realName string
+	var u User
+
+	rows, err := c.db.Query("SELECT realname FROM users WHERE username=" + username + ";")
+	checkErr(err)
+
+	if rows.Next() {
+		err = rows.Scan(&realName)
+		checkErr(err)
+		u = NewUser(username, realName)
+	}
+
+	rows.Close()
+	return u
+}
+
 func (c *Client) GetProducts() []Product {
 	var prods []Product
 	var id string
@@ -51,6 +68,23 @@ func (c *Client) GetProducts() []Product {
 
 	rows.Close()
 	return prods
+}
+
+func (c *Client) GetProduct(id string) Product {
+	var name string
+	var p Product
+
+	rows, err := c.db.Query("SELECT name FROM products;")
+	checkErr(err)
+
+	if rows.Next() {
+		err = rows.Scan(&name)
+		checkErr(err)
+		p = NewProduct(id, name)
+	}
+
+	rows.Close()
+	return p
 }
 
 //TODO: modify
