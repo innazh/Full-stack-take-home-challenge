@@ -16,6 +16,8 @@ func setCommonHeaders(h http.Handler) http.Handler {
 	})
 }
 
+// func handleGetUsers
+
 func main() {
 	var c *Client
 	l := log.New(os.Stdout, "server: ", log.LstdFlags|log.Lshortfile)
